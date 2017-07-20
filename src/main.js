@@ -8,6 +8,7 @@ import VueLazyload from 'vue-lazyload'
 import App from './App.vue'
 import Loading from './components/loading'
 require('./assets/css/base.css'); //全局引入
+
 Vue.use(Less);
 Vue.use(VueRouter);
 Vue.use(Loading);
@@ -41,7 +42,7 @@ axios.interceptors.response.use(function(response) { //配置请求回来的信�
 }, function(error) {
     return Promise.reject(error);
 });
-axios.defaults.baseURL = 'http://localhost:3333';
+axios.defaults.baseURL = 'http://localhost:8080/mobile-jd/api';
 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 Vue.prototype.$http = axios;
 /*axios.defaults.baseURL = (process.env.NODE_ENV !=='production' ? config.dev.httpUrl:config.build.httpUrl);

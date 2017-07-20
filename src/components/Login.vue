@@ -24,6 +24,7 @@
 	</div>
 </template>
 <script>
+    const qs = require('qs');
 	export default{
 		data(){
 			return{
@@ -41,15 +42,10 @@
 					alert('请输入密码');
 				}else{
 					_this.$http.post(
-					  /*'/login',{
+					  '/login',qs.stringify({
 						USERNAME:_this.username,
 						PASSWORD:_this.password,
-					}
-					*/
-                      {
-
-                      }
-					).then((res)=>{
+					})).then((res)=>{
 						console.log(_this.password);
 					if(res.status == 200){
 						_this.userInfo = res.data;
@@ -57,7 +53,7 @@
 							//LOGIN success
 							window.sessionStorage.userInfo = JSON.stringify(_this.userInfo);
 							console.log(_this.$store);
-							_this.$store.dispatch('setUserInfo', userInfo);
+							_this.$store.dispatch('setUserInfo', _this.userInfo);
                         let redirect = decodeURIComponent(_this.$route.query.redirect || '/');
                         _this.$router.push({
                             path: redirect
